@@ -5,6 +5,10 @@
 //  Created by Abhinav on 13/11/24.
 //
 
+protocol HandleDetailsProtocol:AnyObject {
+    func titleTap(in cell:VideoTableViewCell)
+}
+
 import UIKit
 
 class ViewController: UIViewController {
@@ -62,6 +66,7 @@ extension ViewController :UITableViewDelegate,UITableViewDataSource {
         cell.backgroundColor = .brown
         cell.configure()
         cell.setUPData()
+        cell.delegate = self
         return cell
     }
     
@@ -71,7 +76,6 @@ extension ViewController :UITableViewDelegate,UITableViewDataSource {
     func playVisibleVideo() {
         
         pauseAllVideos()
-        
         
         if let indexPath = videoTblView.indexPathsForVisibleRows?.first {
             let cell = videoTblView.cellForRow(at: indexPath) as? VideoTableViewCell
@@ -135,9 +139,13 @@ extension ViewController :UITableViewDelegate,UITableViewDataSource {
 
 
 extension ViewController:HandleDetailsProtocol{
-    func titleTap(_ cell: VideoTableViewCell) {
+    func titleTap(in cell: VideoTableViewCell) {
         if let indexPath = videoTblView.indexPath(for: cell) {
             let vc = storyboard?.instantiateViewController(withIdentifier: "DetailsVC") as! DetailsVC
+            if let sheet = vc.sheetPresentationController{
+                sheet.detents = [.medium(),.large()]
+            }
+            
             present(vc, animated: true)
             
         }

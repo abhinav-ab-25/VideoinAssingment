@@ -5,9 +5,7 @@
 //  Created by Netprophets on 13/11/24.
 //
 
-protocol HandleDetailsProtocol {
-    func titleTap(_ cell:VideoTableViewCell)
-}
+
 
 import UIKit
 import AVKit
@@ -30,7 +28,7 @@ class VideoTableViewCell: UITableViewCell {
     @IBOutlet weak var btnRetry: UIButton!
     @IBOutlet weak var lblError: UILabel!
     var isPlaying = false
-    weak var delegate:VideoTableViewCell?
+    weak var delegate:HandleDetailsProtocol?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -128,7 +126,10 @@ class VideoTableViewCell: UITableViewCell {
         btnRetry.setUnderlinedTitle("Retry")
         lblError.isHidden = true
         btnRetry.isHidden = true
+        lblTitle.isUserInteractionEnabled = true
         let titleTap = UITapGestureRecognizer(target: self, action: #selector(actionTap))
+        lblTitle.addGestureRecognizer(titleTap)
+        
     }
     
     func playVideo() {
@@ -164,7 +165,7 @@ class VideoTableViewCell: UITableViewCell {
     }
     
     @objc func actionTap(){
-        delegate?.actionTap()
+        delegate?.titleTap(in: self)
     }
 
 }
