@@ -14,10 +14,9 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var videoTblView:UITableView!
-    
-    let networkManager = NetworkManager()
     var data:VideoData?
     var currentIndex = 0
+    let viewModel = VideoViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,9 +44,9 @@ class ViewController: UIViewController {
     }
     
     func getData() {
-        networkManager.parseJson{[weak self] videoData in
-            guard let actualData = videoData else {return}
-            self?.data = actualData
+        viewModel.parseData { [weak self] videoData in
+            guard let video = videoData else {return}
+            self?.data = video
             DispatchQueue.main.async {
                 self?.videoTblView.reloadData()
             }
@@ -145,7 +144,9 @@ extension ViewController:HandleDetailsProtocol{
             if let sheet = vc.sheetPresentationController{
                 sheet.detents = [.medium(),.large()]
             }
-            
+            if let videoData = data?[indexPath.row]{
+                vc.video = videoData
+            }
             present(vc, animated: true)
             
         }

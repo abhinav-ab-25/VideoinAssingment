@@ -34,36 +34,6 @@
             endingLineNumber = "143"
             landmarkName = "titleTap(in:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "DB9460EE-AA1B-424F-91C3-B52407DD36C8 - e4c408e868aa2796"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "videoAssingment.ViewController.titleTap(in: videoAssingment.VideoTableViewCell) -&gt; ()"
-                  moduleName = "videoAssingment"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/netprophets/Documents/Practice/AppSquadzAssingment/VideoinAssingment/videoAssingment/videoAssingment/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "143"
-                  endingLineNumber = "143">
-               </Location>
-               <Location
-                  uuid = "DB9460EE-AA1B-424F-91C3-B52407DD36C8 - e4c408e868aa2796"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "videoAssingment.ViewController.titleTap(in: videoAssingment.VideoTableViewCell) -&gt; ()"
-                  moduleName = "videoAssingment"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/netprophets/Documents/Practice/AppSquadzAssingment/VideoinAssingment/videoAssingment/videoAssingment/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "143"
-                  endingLineNumber = "143">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
