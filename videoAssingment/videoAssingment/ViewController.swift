@@ -2,17 +2,108 @@
 //  ViewController.swift
 //  videoAssingment
 //
-//  Created by Netprophets on 13/11/24.
+//  Created by Abhinav on 13/11/24.
 //
 
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var videoTblView:UITableView!
+    
+    let networkManager = NetworkManager()
+    var data:VideoData?
+    var currentIndex = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-     
+        view.backgroundColor = .green
+        getData()
+        setupTableView()
+        videoTblView.rowHeight = videoTblView.bounds.height
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        
+    }
+    
+    func setupTableView() {
+        let cell = UINib(nibName: "VideoTableViewCell", bundle: nil)
+        videoTblView.register(cell, forCellReuseIdentifier: "VideoTableViewCell")
+        videoTblView.delegate = self
+        videoTblView.dataSource = self
+        videoTblView.backgroundColor = .purple
+        videoTblView.contentInsetAdjustmentBehavior = .never
+        videoTblView.decelerationRate = .fast
+    }
+    
+    func getData() {
+        networkManager.parseJson{[weak self] videoData in
+            guard let actualData = videoData else {return}
+            self?.data = actualData
+            DispatchQueue.main.async {
+                self?.videoTblView.reloadData()
+            }
+        }
+    }
+}
+
+extension ViewController :UITableViewDelegate,UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "VideoTableViewCell", for: indexPath) as! VideoTableViewCell
+        cell.video = data?[indexPath.row]
+        cell.backgroundColor = .brown
+        cell.configure()
+        cell.setUPData()
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return tableView.frame.maxY
+    }
+//    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        playVisibleVideo()
+      print("msnlakn")
+        
+    }
+    
+    func playVisibleVideo() {
+        let visibleCells = videoTblView.visibleCells.compactMap { $0 as? VideoTableViewCell }
+        visibleCells.forEach { $0.player?.pause() }
+        
+        if let firstVisibleCell = visibleCells.first {
+            firstVisibleCell.player?.play()
+        }
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let cellHeight = videoTblView.rowHeight
+        
+        if velocity.y > 0 {
+            
+            currentIndex += 1
+        } else if velocity.y < 0 {
+            
+            currentIndex -= 1
+        }
+        
+        
+        currentIndex = max(0, min(currentIndex, videoTblView.numberOfRows(inSection: 0) - 1))
+        
+        
+        let newOffsetY = CGFloat(currentIndex) * cellHeight
+        targetContentOffset.pointee = CGPoint(x: 0, y: newOffsetY)
+        videoTblView.rowHeight = videoTblView.bounds.height
         
     }
 }
+
 
