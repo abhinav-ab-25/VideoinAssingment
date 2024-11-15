@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        playVisibleVideo()
         
     }
     
@@ -68,21 +68,48 @@ extension ViewController :UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableView.frame.maxY
     }
-//    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        playVisibleVideo()
-      print("msnlakn")
+    func playVisibleVideo() {
         
+        pauseAllVideos()
+        
+        
+        if let indexPath = videoTblView.indexPathsForVisibleRows?.first {
+            let cell = videoTblView.cellForRow(at: indexPath) as? VideoTableViewCell
+            cell?.player?.play()
+            currentIndex = indexPath.row
+        }
     }
     
-    func playVisibleVideo() {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        
+        pauseAllVideos()
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        
+        playVisibleVideo()
+    }
+   
+    
+ /*   
+  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+      playVisibleVideo()
+    print("msnlakn")
+      
+  }
+  func playVisibleVideo() {
         let visibleCells = videoTblView.visibleCells.compactMap { $0 as? VideoTableViewCell }
         visibleCells.forEach { $0.player?.pause() }
         
         if let firstVisibleCell = visibleCells.first {
             firstVisibleCell.player?.play()
         }
-    }
+    } */
+    
+    func pauseAllVideos() {
+           let visibleCells = videoTblView.visibleCells.compactMap { $0 as? VideoTableViewCell }
+           visibleCells.forEach { $0.player?.pause() }
+       }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let cellHeight = videoTblView.rowHeight
@@ -107,3 +134,12 @@ extension ViewController :UITableViewDelegate,UITableViewDataSource {
 }
 
 
+extension ViewController:HandleDetailsProtocol{
+    func titleTap(_ cell: VideoTableViewCell) {
+        if let indexPath = videoTblView.indexPath(for: cell) {
+            let vc = storyboard?.instantiateViewController(withIdentifier: "DetailsVC") as! DetailsVC
+            present(vc, animated: true)
+            
+        }
+    }
+}

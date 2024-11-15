@@ -95,15 +95,38 @@
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Something went wrong !" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zqu-VX-iuP">
+                                        <rect key="frame" x="85.666666666666671" y="185.33333333333334" width="189.66666666666663" height="20.333333333333343"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I49-Yf-1Gu">
+                                        <rect key="frame" x="143.66666666666666" y="210.66666666666666" width="74" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="74" id="0Wl-hb-XFs"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Retry">
+                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="15"/>
+                                            <attributedString key="attributedSubtitle"/>
+                                        </buttonConfiguration>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="I49-Yf-1Gu" firstAttribute="top" secondItem="Zqu-VX-iuP" secondAttribute="bottom" constant="5" id="28P-33-CRV"/>
                                     <constraint firstItem="GBg-Mf-rhr" firstAttribute="height" secondItem="2cD-dH-08k" secondAttribute="height" multiplier="0.18" id="5cR-xw-zqY"/>
+                                    <constraint firstItem="w32-jy-hse" firstAttribute="top" secondItem="Zqu-VX-iuP" secondAttribute="bottom" constant="40" id="FdO-Fa-py6"/>
                                     <constraint firstItem="w32-jy-hse" firstAttribute="centerX" secondItem="2cD-dH-08k" secondAttribute="centerX" id="Mbj-VF-Ue8"/>
                                     <constraint firstItem="GBg-Mf-rhr" firstAttribute="width" secondItem="2cD-dH-08k" secondAttribute="width" multiplier="0.2" id="MkY-wT-vBW"/>
                                     <constraint firstItem="w32-jy-hse" firstAttribute="centerY" secondItem="2cD-dH-08k" secondAttribute="centerY" id="Rl6-85-PkA"/>
+                                    <constraint firstItem="w32-jy-hse" firstAttribute="top" secondItem="I49-Yf-1Gu" secondAttribute="bottom" constant="5" id="ddi-9J-YUe"/>
                                     <constraint firstAttribute="bottom" secondItem="UbJ-41-BlV" secondAttribute="bottom" constant="50" id="f9K-pb-ZRm"/>
                                     <constraint firstItem="UbJ-41-BlV" firstAttribute="leading" secondItem="2cD-dH-08k" secondAttribute="leading" id="jgH-28-WOK"/>
+                                    <constraint firstItem="Zqu-VX-iuP" firstAttribute="centerX" secondItem="2cD-dH-08k" secondAttribute="centerX" id="kQe-Q4-Si9"/>
+                                    <constraint firstItem="I49-Yf-1Gu" firstAttribute="centerX" secondItem="Zqu-VX-iuP" secondAttribute="centerX" id="lse-Id-Wd6"/>
                                     <constraint firstAttribute="trailing" secondItem="UbJ-41-BlV" secondAttribute="trailing" id="tzY-pb-7Rx"/>
                                     <constraint firstItem="UbJ-41-BlV" firstAttribute="top" secondItem="GBg-Mf-rhr" secondAttribute="bottom" constant="5" id="ypy-lb-kU2"/>
                                     <constraint firstAttribute="trailing" secondItem="GBg-Mf-rhr" secondAttribute="trailing" id="zCo-5P-d4Z"/>
@@ -129,8 +152,10 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="btnPlay" destination="w32-jy-hse" id="EbV-ek-4AB"/>
+                <outlet property="btnRetry" destination="I49-Yf-1Gu" id="EV6-js-NVz"/>
                 <outlet property="controlView" destination="2cD-dH-08k" id="Uyy-vB-Ozc"/>
                 <outlet property="footerView" destination="UbJ-41-BlV" id="Ghk-cr-xOA"/>
+                <outlet property="lblError" destination="Zqu-VX-iuP" id="Be0-6T-d5B"/>
                 <outlet property="lblName" destination="A4h-UR-J60" id="vHv-Eg-WxT"/>
                 <outlet property="lblTitle" destination="kJ3-Ho-Nux" id="oHW-wM-Z4C"/>
                 <outlet property="profilePicture" destination="pQZ-C7-Ccy" id="rF2-p6-Va5"/>
@@ -147,7 +172,7 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

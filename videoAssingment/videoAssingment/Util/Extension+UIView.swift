@@ -35,3 +35,14 @@ extension UIButton {
     }
 }
 
+
+extension UIButton {
+    func setUnderlinedTitle(_ title: String, for state: UIControl.State = .normal) {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .underlineStyle: NSUnderlineStyle.single.rawValue,
+            .foregroundColor: self.titleColor(for: state) ?? UIColor.white
+        ]
+        let attributedString = NSAttributedString(string: title, attributes: attributes)
+        self.setAttributedTitle(attributedString, for: state)
+    }
+}

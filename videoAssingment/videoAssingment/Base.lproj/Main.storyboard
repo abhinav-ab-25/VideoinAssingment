@@ -50,10 +50,40 @@
             </objects>
             <point key="canvasLocation" x="1043.5114503816794" y="-16.197183098591552"/>
         </scene>
+        <!--DetailsVC-->
+        <scene sceneID="yM9-Yz-VPw">
+            <objects>
+                <viewController storyboardIdentifier="DetailsVC" title="DetailsVC" id="gIW-ZR-Did" customClass="DetailsVC" customModule="videoAssingment" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZD2-kr-wyc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nls-Po-Sl4">
+                                <rect key="frame" x="0.0" y="59" width="393" height="68"/>
+                                <color key="backgroundColor" systemColor="systemBrownColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ORs-8E-fgV"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Nls-Po-Sl4" firstAttribute="leading" secondItem="ORs-8E-fgV" secondAttribute="leading" id="5e3-wp-NUi"/>
+                            <constraint firstItem="Nls-Po-Sl4" firstAttribute="height" secondItem="ZD2-kr-wyc" secondAttribute="height" multiplier="0.08" id="ZC1-r6-Gmk"/>
+                            <constraint firstItem="ORs-8E-fgV" firstAttribute="trailing" secondItem="Nls-Po-Sl4" secondAttribute="trailing" id="qAI-xx-64D"/>
+                            <constraint firstItem="Nls-Po-Sl4" firstAttribute="top" secondItem="ORs-8E-fgV" secondAttribute="top" id="v5d-Up-Qop"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LYO-ui-Ceg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1877.0992366412213" y="-16.197183098591552"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBrownColor">
+            <color red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

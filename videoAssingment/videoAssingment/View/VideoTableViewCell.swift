@@ -5,13 +5,19 @@
 //  Created by Netprophets on 13/11/24.
 //
 
+protocol HandleDetailsProtocol {
+    func titleTap(_ cell:VideoTableViewCell)
+}
+
 import UIKit
 import AVKit
 
 class VideoTableViewCell: UITableViewCell {
-
+    
     var player:AVPlayer?
     var playerLayer: AVPlayerLayer?
+    var playerItem: AVPlayerItem?
+    
     var video:VideoDatum?
     @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var btnPlay: UIButton!
@@ -21,15 +27,16 @@ class VideoTableViewCell: UITableViewCell {
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblTitle: UILabel!
-    
+    @IBOutlet weak var btnRetry: UIButton!
+    @IBOutlet weak var lblError: UILabel!
     var isPlaying = false
+    weak var delegate:VideoTableViewCell?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         setupUI()
-        
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
@@ -38,39 +45,72 @@ class VideoTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         player?.pause()
-        playerLayer?.removeFromSuperlayer()
+//        playerLayer?.removeFromSuperlayer()
     }
     
     func configure() {
         let link = video?.videoURL ?? ""
         print("link",link)
         guard let url = URL(string: link) else {return}
-        player = AVPlayer(url: url)
+        playerItem = AVPlayerItem(url: url)
+        player = AVPlayer(playerItem: playerItem)
         playerLayer = AVPlayerLayer(player: player)
         playerLayer?.frame = contentView.bounds
         playerLayer?.videoGravity = .resizeAspectFill
 //        playerLayer?.player?.volume = .zero
+        /*
         player?.addObserver(self, forKeyPath: "status", options: [.old, .new], context: nil)
-
+        playerItem?.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: [.new, .initial], context: nil)
+        playerItem?.addObserver(self, forKeyPath: "playbackBufferEmpty", options: [.new, .initial], context: nil)
+        */
         if let playerLayer = playerLayer {
-                videoView.layer.addSublayer(playerLayer)
+              videoView.layer.addSublayer(playerLayer)
         }
         videoView.bringSubviewToFront(controlView)
-        
-        print("Hello")
-         
     }
     
+    /*
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        guard let playerItem = object as? AVPlayerItem else { return }
         if keyPath == "status" {
             if player?.status == .readyToPlay {
                 print("Video is ready to play")
             } else if player?.status == .failed {
                 print("Failed to load video")
-                
+            }
+            else if player?.status == .unknown {
+                print("Unknown error")
             }
         }
+        
+        if keyPath == "playbackLikelyToKeepUp" {
+               DispatchQueue.main.async {
+                   if playerItem.isPlaybackLikelyToKeepUp {
+//                       self.errorLabel.isHidden = true
+//                       self.player?.play() // Start playback if buffering is enough
+                   } else {
+                       print("error eror playbackLikelyToKeepUp")
+                   }
+               }
+           }
+        if keyPath == "playbackBufferEmpty" {
+              DispatchQueue.main.async {
+                  if playerItem.isPlaybackBufferEmpty {
+                      print("keypath playbackBufferEmpty")
+                  }
+              }
+          }
+
+          
+          if keyPath == "error" {
+              DispatchQueue.main.async {
+                  if let error = playerItem.error {
+                      print("keypath error")
+                  }
+              }
+          }
     }
+    */
     
     func setUPData(){
         lblName.text = video?.author ?? "Author Name"
@@ -82,12 +122,14 @@ class VideoTableViewCell: UITableViewCell {
         controlView.isUserInteractionEnabled = true
         let tapgesture = UITapGestureRecognizer(target: self, action: #selector(actionControlVideo))
         controlView.addGestureRecognizer(tapgesture)
-//        btnPlay.isHidden = true
         btnPlay.backgroundColor = .black.withAlphaComponent(0.6)
         btnPlay.layer.cornerRadius = btnPlay.bounds.size.height/2
-       
+        btnPlay.isHidden = true
+        btnRetry.setUnderlinedTitle("Retry")
+        lblError.isHidden = true
+        btnRetry.isHidden = true
+        let titleTap = UITapGestureRecognizer(target: self, action: #selector(actionTap))
     }
-    
     
     func playVideo() {
         player?.play()
@@ -99,12 +141,12 @@ class VideoTableViewCell: UITableViewCell {
     
     @IBAction func actionControlVideo(_ sender:UIButton) {
         if !isPlaying {
-            playVideo()
+            pauseVideo()
             isPlaying = true
             hideShowPlayButton(play: isPlaying)
         }
         else {
-            pauseVideo()
+            playVideo()
             isPlaying = false
             hideShowPlayButton(play: isPlaying)
         }
@@ -121,6 +163,8 @@ class VideoTableViewCell: UITableViewCell {
         }
     }
     
-    
+    @objc func actionTap(){
+        delegate?.actionTap()
+    }
 
 }

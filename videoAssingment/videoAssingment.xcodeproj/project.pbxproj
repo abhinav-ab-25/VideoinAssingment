@@ -17,6 +17,7 @@
 		9E4C2DBD2CE49FF900E86FC4 /* videoAssingmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4C2DBC2CE49FF900E86FC4 /* videoAssingmentTests.swift */; };
 		9E4C2DC72CE49FF900E86FC4 /* videoAssingmentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4C2DC62CE49FF900E86FC4 /* videoAssingmentUITests.swift */; };
 		9E4C2DC92CE49FF900E86FC4 /* videoAssingmentUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4C2DC82CE49FF900E86FC4 /* videoAssingmentUITestsLaunchTests.swift */; };
+		9E6946C62CE773D5003C2F91 /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6946C52CE773D5003C2F91 /* DetailsVC.swift */; };
 		9E7EF78E2CE4AD5900262306 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 9E7EF78D2CE4AD5800262306 /* data.json */; };
 		9E7EF7902CE4ADC400262306 /* Networkfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7EF78F2CE4ADC400262306 /* Networkfile.swift */; };
 		9E7EF7942CE4B00A00262306 /* VideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7EF7932CE4B00A00262306 /* VideoData.swift */; };
@@ -57,6 +58,7 @@
 		9E4C2DC22CE49FF900E86FC4 /* videoAssingmentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = videoAssingmentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E4C2DC62CE49FF900E86FC4 /* videoAssingmentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = videoAssingmentUITests.swift; sourceTree = "<group>"; };
 		9E4C2DC82CE49FF900E86FC4 /* videoAssingmentUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = videoAssingmentUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9E6946C52CE773D5003C2F91 /* DetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
 		9E7EF78D2CE4AD5800262306 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		9E7EF78F2CE4ADC400262306 /* Networkfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networkfile.swift; sourceTree = "<group>"; };
 		9E7EF7932CE4B00A00262306 /* VideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoData.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				9E4C2DB32CE49FF800E86FC4 /* Info.plist */,
 				9E4C2DAB2CE49FF500E86FC4 /* videoAssingment.xcdatamodeld */,
 				9E7EF78F2CE4ADC400262306 /* Networkfile.swift */,
+				9E6946C52CE773D5003C2F91 /* DetailsVC.swift */,
 			);
 			path = videoAssingment;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				9E7EF7902CE4ADC400262306 /* Networkfile.swift in Sources */,
 				9ECFD1972CE69ED900B26BFD /* Extension+UIView.swift in Sources */,
 				9E7EF7992CE4B4C900262306 /* VideoTableViewCell.swift in Sources */,
+				9E6946C62CE773D5003C2F91 /* DetailsVC.swift in Sources */,
 				9E4C2DA72CE49FF500E86FC4 /* ViewController.swift in Sources */,
 				9E7EF7942CE4B00A00262306 /* VideoData.swift in Sources */,
 				9E4C2DA32CE49FF500E86FC4 /* AppDelegate.swift in Sources */,
